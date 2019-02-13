@@ -1,4 +1,4 @@
-package im.irrational.algorithm.GameTreeSearch.minimax;
+package im.irrational.algorithm.GameTreeSearch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +30,31 @@ public class TreeNode<TAction extends IAction, TState extends IState> {
         return children;
     }
 
-    public void expand(final TreeNode child){
+    public void expand(final TreeNode<TAction, TState> child) {
         this.children.add(child);
     }
 
     public TreeNode<TAction, TState> expand(final TAction action, final TState state) {
-        TreeNode<TAction, TState> child = new TreeNode(action, state);
+        TreeNode<TAction, TState> child = new TreeNode<>(action, state);
         this.expand(child);
         return child;
     }
 
+    public boolean isTerimal() {
+        return state.isTerminal();
+    }
+
     public boolean isPseudoLeaf() {
-        return this.children.isEmpty();
+        return !isTerimal() && this.children.isEmpty();
     }
 
     public int arity() {
-        return children.size();
+        return isTerimal() ? 0 : children.size();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s->%s", action.toString(), state.toString());
     }
 
     @Override
