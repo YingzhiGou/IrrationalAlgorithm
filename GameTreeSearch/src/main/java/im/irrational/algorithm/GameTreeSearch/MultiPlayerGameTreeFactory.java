@@ -1,7 +1,7 @@
 package im.irrational.algorithm.GameTreeSearch;
 
-public abstract class MultiPlayerGameTreeFactory<Action extends IAction, State extends IState> implements ITreeFactory<PlayerTreeNode<Action,State>> {
-    protected final IPlayer[] players;
+public class MultiPlayerGameTreeFactory<Action extends IAction, State extends IState> implements ITreeFactory<PlayerTreeNode<Action,State>> {
+    protected final IPlayer<Action>[] players;
     protected final IStateUpdateOperator<Action, State> stateUpdateOperator;
 
     protected MultiPlayerGameTreeFactory(final IStateUpdateOperator<Action, State> stateUpdateOperator, final IPlayer... players) {

@@ -9,8 +9,7 @@ public class MinimaxTreeFactory<Action extends IAction, State extends IState> ex
         super(stateUpdateOperator, minimizingPlayer, maximizingPlayer);
     }
 
-    @Override
-    public void construct(PlayerTreeNode<Action, State> root, int level) {
-        super.construct(root);
+    public void construct(MinimaxTreeNode<Action, State> root, int level) {
+        
     }
 }
