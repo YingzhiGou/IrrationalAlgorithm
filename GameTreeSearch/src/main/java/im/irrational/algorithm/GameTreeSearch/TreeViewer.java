@@ -87,7 +87,7 @@ public class TreeViewer extends JComponent {
     }
 
     private void drawNode(Graphics2D g, TreeNode node, int x, int y) {
-        if (node.isTerimal()) {
+        if (node.isTerminal()) {
             g.setColor(terninalNode);
         } else {
             g.setColor(nodeBg);

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-public class TreeNode<TAction extends IAction, TState extends IState> {
+public class TreeNode<TAction extends IAction, TState extends IState> implements IActionNode<TAction>, IStateNode<TState>, ITreeNode {
     static protected final Logger logger = Logger.getLogger(TreeNode.class.getName());
 
     public TAction getAction() {
@@ -40,16 +40,16 @@ public class TreeNode<TAction extends IAction, TState extends IState> {
         return child;
     }
 
-    public boolean isTerimal() {
+    public boolean isTerminal() {
         return state.isTerminal();
     }
 
     public boolean isPseudoLeaf() {
-        return !isTerimal() && this.children.isEmpty();
+        return !isTerminal() && this.children.isEmpty();
     }
 
     public int arity() {
-        return isTerimal() ? 0 : children.size();
+        return isTerminal() ? 0 : children.size();
     }
 
     @Override
