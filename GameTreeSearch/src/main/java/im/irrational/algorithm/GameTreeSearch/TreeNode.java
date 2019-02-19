@@ -1,8 +1,6 @@
 package im.irrational.algorithm.GameTreeSearch;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class TreeNode<TAction extends IAction, TState extends IState> implements IActionNode<TAction>, IStateNode<TState>, ITreeNode {
@@ -16,18 +14,18 @@ public class TreeNode<TAction extends IAction, TState extends IState> implements
         return state;
     }
 
-    final protected List<TreeNode<TAction, TState>> children;
+    final protected Set<TreeNode<TAction, TState>> children;
     final private TAction action;
     final private TState state;
 
     TreeNode(final TAction action, final TState state) {
         this.action = action;
         this.state = state;
-        this.children = new ArrayList<>();
+        this.children = new HashSet<>();
     }
 
     public List<TreeNode<TAction, TState>> getChildren() {
-        return children;
+        return new LinkedList<>(children);
     }
 
     public void expand(final TreeNode<TAction, TState> child) {

@@ -8,7 +8,7 @@ public class ValueTreeNode<Action extends IAction, State extends IState, Value> 
 
     ValueTreeNode(final Action action, final State state, final Value value){
         super(action, state);
-        this.satValue(value);
+        this.setValue(value);
     }
 
     @Override
@@ -17,7 +17,7 @@ public class ValueTreeNode<Action extends IAction, State extends IState, Value> 
     }
 
     @Override
-    public void satValue(final Value value) {
+    public void setValue(final Value value) {
         this.value = value;
     }
 }
