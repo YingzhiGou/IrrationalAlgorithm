@@ -8,6 +8,16 @@ import im.irrational.algorithm.GameTreeSearch.PlayerTreeNode;
 public class MinimaxTreeNode<Action extends IAction, State extends IState, Value extends Comparable<Value>> extends PlayerTreeNode<Action, State> implements IValueNode<Value> {
     private Value value;
 
+    private MinimaxTreeNode<Action, State, Value> bestChild;
+
+    public MinimaxTreeNode<Action, State, Value> getBestChild() {
+        return bestChild;
+    }
+
+    public void setBestChild(MinimaxTreeNode<Action, State, Value> bestChild) {
+        this.bestChild = bestChild;
+    }
+
     MinimaxTreeNode(MinimaxPlayer<Action> player, Action action, State state, Value value) {
         super(player, action, state);
         this.value = value;
@@ -37,10 +47,13 @@ public class MinimaxTreeNode<Action extends IAction, State extends IState, Value
         super.expand(child);
         if (this.children.size() == 1) {
             this.setValue(child.getValue());
+            this.setBestChild(child);
         } else if (this.getPlayer().getType() == PlayerType.MINIMIZING && child.getValue().compareTo(this.getValue()) < 0) {
             this.setValue(child.getValue());
+            this.setBestChild(child);
         } else if (this.getPlayer().getType() == PlayerType.MAXIMIZING && child.getValue().compareTo(this.getValue()) > 0) {
             this.setValue(child.getValue());
+            this.setBestChild(bestChild);
         }
     }
 
